@@ -33,9 +33,8 @@ class ContactView(View):
         form = self.form_class(request.POST)
         if form.is_valid():
             form.save()
-            # Return a simple success message for HTMX to swap
-            return HttpResponse('<div class="text-green-600 font-bold p-4 bg-green-100 rounded-md">Merci ! Votre message a été envoyé avec succès.</div>')
+            # Return a success message inside the original wrapper for HTMX
+            return HttpResponse('<div id="contact-form-wrapper" class="text-green-600 font-bold p-4 bg-green-100 rounded-md">Merci ! Votre message a été envoyé avec succès.</div>')
 
         # If form is invalid, re-render the form part with errors
-        # HTMX will swap the form with this new one, displaying validation errors
         return render(request, 'portfolio/partials/contact_form.html', {'form': form})
