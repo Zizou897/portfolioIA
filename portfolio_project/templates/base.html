@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="fr" class="scroll-smooth">
+<html lang="fr" class="dark scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Azeez Ridwan - Portfolio{% endblock %}</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@3/tsparticles.bundle.min.js"></script>
     <style>
         /* Small custom style for the nav link underline effect */
         .nav-link {
@@ -22,6 +28,9 @@
             background-color: #4f46e5; /* indigo-600 */
             transition: width 0.3s ease-in-out;
         }
+        .dark .nav-link::after {
+             background-color: #a5b4fc; /* indigo-300 */
+        }
         .nav-link:hover::after {
             width: 100%;
         }
@@ -33,27 +42,28 @@
         }
         .fade-in {
             animation: fadeIn 1s ease-out forwards;
+            opacity: 0; /* Start hidden */
         }
         .fade-in-delay-1 { animation-delay: 0.2s; }
         .fade-in-delay-2 { animation-delay: 0.4s; }
         .fade-in-delay-3 { animation-delay: 0.6s; }
     </style>
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
-    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
+    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div>
                 <a href="{% url 'home' %}" class="text-3xl font-extrabold">
-                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400">
                         Azeez Ridwan
                     </span>
                 </a>
             </div>
             <div class="hidden md:flex items-center space-x-8">
-                <a href="{% url 'home' %}" class="nav-link text-gray-700 font-medium">Accueil</a>
-                <a href="{% url 'about' %}" class="nav-link text-gray-700 font-medium">À Propos</a>
-                <a href="{% url 'services' %}" class="nav-link text-gray-700 font-medium">Services</a>
-                <a href="{% url 'portfolio' %}" class="nav-link text-gray-700 font-medium">Portfolio</a>
+                <a href="{% url 'home' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Accueil</a>
+                <a href="{% url 'about' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">À Propos</a>
+                <a href="{% url 'services' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Services</a>
+                <a href="{% url 'portfolio' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Portfolio</a>
                 <a href="{% url 'contact' %}" class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
                     Contact
                 </a>
@@ -67,8 +77,8 @@
         {% endblock %}
     </main>
 
-    <footer class="bg-white border-t">
-        <div class="container mx-auto py-6 px-6 text-center text-gray-500">
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto py-6 px-6 text-center text-gray-500 dark:text-gray-400">
             <p>&copy; {% now "Y" %} Azeez Ridwan. Tous droits réservés.</p>
             <!-- Social media links can be added here -->
         </div>

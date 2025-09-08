@@ -4,7 +4,7 @@
 
     {% for field in form %}
         <div>
-            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700">{{ field.label }}</label>
+            <label for="{{ field.id_for_label }}" class="block text-sm font-medium text-gray-700 dark:text-gray-300">{{ field.label }}</label>
             {{ field }}
             {% if field.errors %}
                 <p class="text-red-500 text-xs mt-1">{{ field.errors.0 }}</p>
