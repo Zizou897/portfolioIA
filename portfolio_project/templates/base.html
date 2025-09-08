@@ -45,7 +45,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="{% url 'home' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Accueil</a>
                 <a href="{% url 'home' %}#about" class="nav-link text-gray-700 dark:text-gray-300 font-medium">À Propos</a>
-                <a href="{% url 'services' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Services</a>
+                <a href="{% url 'home' %}#services" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Services</a>
                 <a href="{% url 'portfolio' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Portfolio</a>
                 <a href="{% url 'contact' %}" class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
                     Contact
@@ -66,7 +66,7 @@
         <div id="mobile-menu" class="hidden md:hidden bg-white/90 dark:bg-gray-900/90">
             <a href="{% url 'home' %}" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Accueil</a>
             <a href="{% url 'home' %}#about" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">À Propos</a>
-            <a href="{% url 'services' %}#services" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Services</a>
+            <a href="{% url 'home' %}#services" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Services</a>
             <a href="{% url 'portfolio' %}#portfolio" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Portfolio</a>
             <a href="{% url 'contact' %}#contact" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Contact</a>
         </div>

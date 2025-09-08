@@ -7,11 +7,6 @@ from .forms import ContactForm
 class HomePageView(TemplateView):
     template_name = "portfolio/home.html"
 
-class ServiceListView(ListView):
-    model = Service
-    template_name = 'portfolio/services.html'
-    context_object_name = 'services'
-
 class ProjectListView(ListView):
     model = Project
     template_name = 'portfolio/portfolio.html'
