@@ -1,24 +1,50 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Azeez Ridwan - Portfolio{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <style>
+        /* Small custom style for the nav link underline effect */
+        .nav-link {
+            position: relative;
+            padding-bottom: 0.25rem;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #4f46e5; /* indigo-600 */
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
-    <header class="bg-white shadow-md sticky top-0 z-50">
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-sm shadow-md">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div>
-                <a href="{% url 'home' %}" class="text-2xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Azeez Ridwan</a>
+                <a href="{% url 'home' %}" class="text-3xl font-extrabold">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">
+                        Azeez Ridwan
+                    </span>
+                </a>
             </div>
-            <div class="hidden md:flex items-center space-x-6">
-                <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600">Accueil</a>
-                <a href="{% url 'about' %}" class="text-gray-700 hover:text-indigo-600">À Propos</a>
-                <a href="{% url 'services' %}" class="text-gray-700 hover:text-indigo-600">Services</a>
-                <a href="{% url 'portfolio' %}" class="text-gray-700 hover:text-indigo-600">Portfolio</a>
-                <a href="{% url 'contact' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contact</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{% url 'home' %}" class="nav-link text-gray-700 font-medium">Accueil</a>
+                <a href="{% url 'about' %}" class="nav-link text-gray-700 font-medium">À Propos</a>
+                <a href="{% url 'services' %}" class="nav-link text-gray-700 font-medium">Services</a>
+                <a href="{% url 'portfolio' %}" class="nav-link text-gray-700 font-medium">Portfolio</a>
+                <a href="{% url 'contact' %}" class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                    Contact
+                </a>
             </div>
             <!-- Mobile Menu Button Here if needed -->
         </nav>
