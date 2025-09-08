@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Contact - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-8 max-w-2xl mx-auto">
+  <h1 class="text-4xl font-bold text-gray-900 mb-4 text-center">Contactez-moi</h1>
+
+  <p class="text-gray-600 mb-8 text-center">
+    Une question, une proposition de projet ou juste envie de dire bonjour ? N'hésitez pas à utiliser le formulaire ci-dessous.
+  </p>
+
+  <div id="contact-form-wrapper">
+    {% include "portfolio/partials/contact_form.html" %}
+  </div>
+
+</div>
+{% endblock %}
