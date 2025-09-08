@@ -24,7 +24,7 @@ class Project(models.Model):
 
     title = models.CharField(max_length=200, verbose_name=_("Title"))
     description = models.TextField(verbose_name=_("Description"))
-    image = models.ImageField(upload_to='projects/', verbose_name=_("Image"))
+    image = models.ImageField(upload_to='projects/', verbose_name=_("Image"), blank=True, null=True)
     link = models.URLField(max_length=200, blank=True, null=True, verbose_name=_("Project Link"))
     category = models.CharField(
         max_length=3,

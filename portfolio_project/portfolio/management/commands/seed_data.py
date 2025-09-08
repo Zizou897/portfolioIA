@@ -1,11 +1,8 @@
-import os
 from django.core.management.base import BaseCommand
-from django.core.files.base import ContentFile
 from portfolio.models import Service, Project
-from django.conf import settings
 
 class Command(BaseCommand):
-    help = 'Seeds the database with initial data for services and projects.'
+    help = 'Seeds the database with initial text data for services and projects. Images can be added manually via the admin panel.'
 
     def handle(self, *args, **kwargs):
         self.stdout.write('Deleting old data...')
@@ -26,37 +23,18 @@ class Command(BaseCommand):
             description='Gestion et animation de vos réseaux sociaux pour bâtir et engager votre communauté.'
         )
 
-        self.stdout.write('Creating new projects...')
-
-        # Create a dummy image file in the media directory
-        dummy_image_name = 'dummy_project_image.jpg'
-        dummy_image_path = os.path.join(settings.MEDIA_ROOT, dummy_image_name)
-
-        # Ensure media directory exists
-        os.makedirs(settings.MEDIA_ROOT, exist_ok=True)
-
-        with open(dummy_image_path, 'w') as f:
-            f.write('dummy content')
-
-        project1 = Project(
+        self.stdout.write('Creating new projects (without images)...')
+        Project.objects.create(
             title='Portfolio V1',
             description='Mon premier site portfolio personnel construit avec Django et HTMX. Une vitrine de mes compétences en développement web et en design.',
             category=Project.Category.WEB_DEVELOPMENT,
-            technologies_used='Django, HTMX, TailwindCSS'
+            technologies_used='Django, HTMX, TailwindCSS',
         )
-        with open(dummy_image_path, 'rb') as f:
-            project1.image.save(dummy_image_name, ContentFile(f.read()))
-
-        project2 = Project(
+        Project.objects.create(
             title='Campagne Publicitaire "Future"',
             description='Une série de visuels futuristes générés par IA pour une marque de technologie innovante, mettant en avant des concepts de produits.',
             category=Project.Category.AI_VISUALS,
-            technologies_used='Midjourney, Photoshop'
+            technologies_used='Midjourney, Photoshop',
         )
-        with open(dummy_image_path, 'rb') as f:
-            project2.image.save(dummy_image_name, ContentFile(f.read()))
 
-        self.stdout.write(self.style.SUCCESS('Successfully seeded the database.'))
-
-        # Clean up dummy file
-        os.remove(dummy_image_path)
+        self.stdout.write(self.style.SUCCESS('Successfully seeded the database with text content.'))
