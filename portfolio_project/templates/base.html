@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Azeez Ridwan - Portfolio{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <header class="bg-white shadow-md sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="{% url 'home' %}" class="text-2xl font-bold text-gray-900 hover:text-indigo-600 transition-colors">Azeez Ridwan</a>
+            </div>
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="{% url 'home' %}" class="text-gray-700 hover:text-indigo-600">Accueil</a>
+                <a href="{% url 'about' %}" class="text-gray-700 hover:text-indigo-600">À Propos</a>
+                <a href="{% url 'services' %}" class="text-gray-700 hover:text-indigo-600">Services</a>
+                <a href="{% url 'portfolio' %}" class="text-gray-700 hover:text-indigo-600">Portfolio</a>
+                <a href="{% url 'contact' %}" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700 transition-colors">Contact</a>
+            </div>
+            <!-- Mobile Menu Button Here if needed -->
+        </nav>
+    </header>
+
+    <main class="container mx-auto p-6 my-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-white border-t">
+        <div class="container mx-auto py-6 px-6 text-center text-gray-500">
+            <p>&copy; {% now "Y" %} Azeez Ridwan. Tous droits réservés.</p>
+            <!-- Social media links can be added here -->
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
