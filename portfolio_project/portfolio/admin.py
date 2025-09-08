@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Project, ContactMessage
+from .models import Service, Project, ContactMessage, Article
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -41,3 +41,20 @@ class ContactMessageAdmin(admin.ModelAdmin):
     def has_change_permission(self, request, obj=None):
         # Prevent changing contact messages from the admin
         return False
+
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    """Admin configuration for the Article model."""
+    list_display = ('title', 'author', 'created_at', 'updated_at')
+    list_filter = ('author', 'created_at')
+    search_fields = ('title', 'content')
+    prepopulated_fields = {'slug': ('title',)}
+    readonly_fields = ('created_at', 'updated_at')
+    fieldsets = (
+        (None, {
+            'fields': ('title', 'slug', 'author', 'image', 'content')
+        }),
+        ('Date Information', {
+            'fields': ('created_at', 'updated_at')
+        }),
+    )

@@ -43,6 +43,32 @@ class Project(models.Model):
         verbose_name_plural = _("Projects")
         ordering = ['-created_at']
 
+from django.contrib.auth.models import User
+from django.utils.text import slugify
+
+class Article(models.Model):
+    """Model to represent a blog article."""
+    title = models.CharField(max_length=200, verbose_name=_("Title"))
+    slug = models.SlugField(max_length=200, unique=True, blank=True, verbose_name=_("Slug"))
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='blog_posts', verbose_name=_("Author"))
+    content = models.TextField(verbose_name=_("Content"))
+    image = models.ImageField(upload_to='articles/', blank=True, null=True, verbose_name=_("Banner Image"))
+    created_at = models.DateTimeField(auto_now_add=True, verbose_name=_("Creation Date"))
+    updated_at = models.DateTimeField(auto_now=True, verbose_name=_("Last Updated"))
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = _("Article")
+        verbose_name_plural = _("Articles")
+        ordering = ['-created_at']
+
 class ContactMessage(models.Model):
     """Model to store contact form messages."""
     name = models.CharField(max_length=100, verbose_name=_("Name"))

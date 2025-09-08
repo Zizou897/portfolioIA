@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
-from portfolio.models import Service, Project
+from portfolio.models import Service, Project, Article
+from django.contrib.auth.models import User
 
 class Command(BaseCommand):
     help = 'Seeds the database with initial text data for services and projects. Images can be added manually via the admin panel.'
@@ -35,6 +36,34 @@ class Command(BaseCommand):
             description='Une série de visuels futuristes générés par IA pour une marque de technologie innovante, mettant en avant des concepts de produits.',
             category=Project.Category.AI_VISUALS,
             technologies_used='Midjourney, Photoshop',
+        )
+
+        self.stdout.write('Creating new articles...')
+        try:
+            author = User.objects.get(username='admin')
+        except User.DoesNotExist:
+            self.stdout.write(self.style.ERROR('Admin user not found. Please create a superuser named "admin" first.'))
+            return
+
+        Article.objects.create(
+            title='Les Clés d\'une Identité Visuelle Réussie avec l\'IA',
+            author=author,
+            content='Découvrez comment l\'intelligence artificielle peut transformer votre branding...'
+        )
+        Article.objects.create(
+            title='Django & HTMX : Le Duo Gagnant pour des Sites Modernes',
+            author=author,
+            content='Pourquoi la combinaison de Django pour le backend et HTMX pour le frontend est si puissante...'
+        )
+        Article.objects.create(
+            title='Mon Top 5 des Outils IA pour la Création de Contenu',
+            author=author,
+            content='Un aperçu des outils qui ont changé ma façon de travailler...'
+        )
+        Article.objects.create(
+            title='Un Quatrième Article pour Tester la Pagination',
+            author=author,
+            content='Cet article sert à vérifier que la pagination sur la page du blog fonctionne correctement.'
         )
 
         self.stdout.write(self.style.SUCCESS('Successfully seeded the database with text content.'))
