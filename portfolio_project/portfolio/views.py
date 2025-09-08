@@ -4,12 +4,16 @@ from django.http import HttpResponse
 from .models import Service, Project, Article
 from .forms import ContactForm
 
+from .forms import ContactForm
+
 class HomePageView(TemplateView):
     template_name = "portfolio/home.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['latest_articles'] = Article.objects.order_by('-created_at')[:3]
+        context['projects'] = Project.objects.order_by('-created_at')
+        context['form'] = ContactForm()
         return context
 
 class ProjectListView(ListView):
