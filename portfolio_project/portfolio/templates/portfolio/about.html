@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}À Propos - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="bg-white shadow rounded-lg p-8">
+  <h1 class="text-4xl font-bold text-gray-900 mb-6">À Propos de Moi</h1>
+  <div class="prose prose-lg max-w-none text-gray-700 space-y-4">
+    <p>
+      Passionné par la technologie et la créativité, je suis un développeur full-stack avec une expertise particulière dans l'écosystème Python (Django, FastAPI) et JavaScript (React, Next.js). Mon objectif est de construire des applications web performantes, scalables et intuitives.
+    </p>
+    <p>
+      Au-delà du code, je me suis spécialisé dans la création de visuels hyperréalistes et de vidéos publicitaires en utilisant des outils d'intelligence artificielle de pointe. Cette double compétence me permet d'offrir des solutions digitales complètes, alliant une technique robuste à une esthétique percutante.
+    </p>
+    <h2 class="text-2xl font-semibold pt-4 text-gray-800">Compétences Techniques</h2>
+    <ul class="list-disc list-inside space-y-2">
+      <li><strong>Backend:</strong> Django, FastAPI, Python</li>
+      <li><strong>Frontend:</strong> React, Next.js, HTMX, TailwindCSS</li>
+      <li><strong>Bases de données:</strong> MySQL, PostgreSQL</li>
+      <li><strong>IA & Création Visuelle:</strong> Midjourney, Stable Diffusion, Pika Labs</li>
+    </ul>
+  </div>
+</div>
+{% endblock %}
