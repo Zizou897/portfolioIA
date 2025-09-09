@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Service, Project, ContactMessage, Article
+from .models import Service, Project, ContactMessage, Article, HeroSection
 
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
@@ -58,3 +58,14 @@ class ArticleAdmin(admin.ModelAdmin):
             'fields': ('created_at', 'updated_at')
         }),
     )
+
+@admin.register(HeroSection)
+class HeroSectionAdmin(admin.ModelAdmin):
+    """Admin configuration for the HeroSection model."""
+    def has_add_permission(self, request):
+        # Prevent adding new HeroSection if one already exists
+        return HeroSection.objects.count() == 0
+
+    def has_delete_permission(self, request, obj=None):
+        # Prevent deleting the HeroSection
+        return False

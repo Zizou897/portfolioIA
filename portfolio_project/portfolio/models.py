@@ -46,6 +46,20 @@ class Project(models.Model):
 from django.contrib.auth.models import User
 from django.utils.text import slugify
 
+class HeroSection(models.Model):
+    """Model for the main hero section content."""
+    title = models.CharField(max_length=200, verbose_name=_("Title"))
+    subtitle = models.TextField(verbose_name=_("Subtitle"))
+    image = models.ImageField(upload_to='hero/', blank=True, null=True, verbose_name=_("Background Image"))
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return "Hero Section Content"
+
+    class Meta:
+        verbose_name = _("Hero Section")
+        verbose_name_plural = _("Hero Section")
+
 class Article(models.Model):
     """Model to represent a blog article."""
     title = models.CharField(max_length=200, verbose_name=_("Title"))

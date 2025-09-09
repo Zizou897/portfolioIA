@@ -1,14 +1,16 @@
 from django.core.management.base import BaseCommand
-from portfolio.models import Service, Project, Article
+from portfolio.models import Service, Project, Article, HeroSection
 from django.contrib.auth.models import User
 
 class Command(BaseCommand):
-    help = 'Seeds the database with initial text data for services and projects. Images can be added manually via the admin panel.'
+    help = 'Seeds the database with initial text data.'
 
     def handle(self, *args, **kwargs):
         self.stdout.write('Deleting old data...')
         Service.objects.all().delete()
         Project.objects.all().delete()
+        Article.objects.all().delete()
+        HeroSection.objects.all().delete()
 
         self.stdout.write('Creating new services...')
         Service.objects.create(
@@ -64,6 +66,12 @@ class Command(BaseCommand):
             title='Un Quatrième Article pour Tester la Pagination',
             author=author,
             content='Cet article sert à vérifier que la pagination sur la page du blog fonctionne correctement.'
+        )
+
+        self.stdout.write('Creating hero section...')
+        HeroSection.objects.create(
+            title='Azeez Ridwan – <span class="text-indigo-600 dark:text-indigo-400">Développeur Full-Stack</span> & Créateur de Visuels Publicitaires <span class="text-purple-600 dark:text-purple-400">Hyperréalistes</span>',
+            subtitle='Je transforme vos idées en expériences digitales et visuelles uniques.'
         )
 
         self.stdout.write(self.style.SUCCESS('Successfully seeded the database with text content.'))

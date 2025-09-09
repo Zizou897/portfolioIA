@@ -9,17 +9,26 @@
     <section class="relative z-10 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left">
         <!-- Text Content -->
         <div class="lg:w-1/2 p-8">
-            <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white opacity-0 fade-in">
-                Azeez Ridwan – <span class="text-indigo-600 dark:text-indigo-400">Développeur Full-Stack</span> & Créateur de Visuels Publicitaires <span class="text-purple-600 dark:text-purple-400">Hyperréalistes</span>
-            </h1>
-            <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 opacity-0 fade-in fade-in-delay-1">
-                Je transforme vos idées en expériences digitales et visuelles uniques.
-            </p>
+            {% if hero_section %}
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white opacity-0 fade-in">
+                    {{ hero_section.title|safe }}
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 opacity-0 fade-in fade-in-delay-1">
+                    {{ hero_section.subtitle|safe }}
+                </p>
+            {% else %}
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white opacity-0 fade-in">
+                    Titre par défaut
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 opacity-0 fade-in fade-in-delay-1">
+                    Sous-titre par défaut.
+                </p>
+            {% endif %}
             <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start opacity-0 fade-in fade-in-delay-2">
-                <a href="{% url 'portfolio' %}#portfolio" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                <a href="#portfolio" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
                     Voir mes projets
                 </a>
-                <a href="{% url 'contact' %}#contact" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300">
+                <a href="#contact" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300">
                     Me contacter
                 </a>
             </div>
@@ -27,7 +36,11 @@
 
         <!-- Visual Placeholder -->
         <div class="lg:w-1/2 p-8 opacity-0 fade-in fade-in-delay-3">
-            <img src="https://placehold.co/600x400/111827/4f46e5?text=Azeez+Ridwan" alt="Photo de Azeez Ridwan" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+            {% if hero_section.image %}
+                <img src="{{ hero_section.image.url }}" alt="Image de la section Hero" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+            {% else %}
+                <img src="https://placehold.co/600x400/111827/4f46e5?text=Azeez+Ridwan" alt="Placeholder" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+            {% endif %}
         </div>
     </section>
 </div>
