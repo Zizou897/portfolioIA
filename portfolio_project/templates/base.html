@@ -32,7 +32,7 @@
     </style>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
-    <header class="sticky top-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm shadow-md">
+    <header id="main-header" class="sticky top-0 z-50 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <div>
                 <a href="{% url 'home' %}" class="text-3xl font-extrabold">
@@ -93,6 +93,19 @@
             mobileMenu.classList.toggle('hidden');
             mobileMenuButton.classList.toggle('hamburger-open');
         });
+
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                header.classList.add('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-sm', 'shadow-md');
+            } else {
+                header.classList.remove('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-sm', 'shadow-md');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        // Run on load as well
+        handleScroll();
     </script>
     {% block extra_js %}{% endblock %}
 </body>
