@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Blog - {{ block.super }}{% endblock %}
+
+{% block content %}
+<!-- Blog Header -->
+<div class="relative h-64 rounded-lg overflow-hidden mb-12">
+    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('https://placehold.co/1200x400/111827/4f46e5?text=Blog');"></div>
+    <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <h1 class="text-5xl font-extrabold text-white">Mon Blog</h1>
+    </div>
+</div>
+
+<div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8 md:p-12">
+    <div class="space-y-12">
+        {% for article in articles %}
+            <article class="group">
+                <a href="{% url 'blog_detail' slug=article.slug %}">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        {{ article.title }}
+                    </h2>
+                </a>
+                <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                    Publié le {{ article.created_at|date:"d F Y" }} par {{ article.author.get_full_name|default:article.author.username }}
+                </p>
+                <div class="mt-4 prose dark:prose-invert max-w-none">
+                    {{ article.content|truncatewords_html:50|safe }}
+                </div>
+                <div class="mt-4">
+                    <a href="{% url 'blog_detail' slug=article.slug %}" class="font-semibold text-indigo-600 dark:text-indigo-400 group-hover:underline">
+                        Lire la suite &rarr;
+                    </a>
+                </div>
+            </article>
+        {% empty %}
+            <p class="text-center text-gray-500 dark:text-gray-400">Aucun article de blog pour le moment.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination could be added here later -->
+</div>
+{% endblock %}

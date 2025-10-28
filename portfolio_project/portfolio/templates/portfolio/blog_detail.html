@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8 md:p-12">
+    <article class="max-w-4xl mx-auto">
+        {% if article.image %}
+            <img src="{{ article.image.url }}" alt="{{ article.title }}" class="w-full h-auto max-h-96 object-cover rounded-lg mb-8">
+        {% endif %}
+
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white">
+            {{ article.title }}
+        </h1>
+
+        <p class="text-sm text-gray-500 dark:text-gray-400 mt-4 mb-8">
+            Publié le {{ article.created_at|date:"d F Y" }} par {{ article.author.get_full_name|default:article.author.username }}
+        </p>
+
+        <div class="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300">
+            {{ article.content|safe }}
+        </div>
+
+        <div class="mt-12 border-t dark:border-gray-700 pt-8">
+            <a href="{% url 'blog_list' %}" class="text-indigo-600 dark:text-indigo-400 hover:underline">&larr; Retour au blog</a>
+        </div>
+    </article>
+</div>
+{% endblock %}

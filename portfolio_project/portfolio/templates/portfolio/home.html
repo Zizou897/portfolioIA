@@ -1,0 +1,320 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
+    <!-- Particles Container -->
+    <div id="particles-js" class="absolute inset-0 z-0"></div>
+
+    <!-- Hero Content -->
+    <section class="relative z-10 flex flex-col lg:flex-row items-center justify-center text-center lg:text-left">
+        <!-- Text Content -->
+        <div class="lg:w-1/2 p-8">
+            {% if hero_section %}
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white opacity-0 fade-in">
+                    {{ hero_section.title|safe }}
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 opacity-0 fade-in fade-in-delay-1">
+                    {{ hero_section.subtitle|safe }}
+                </p>
+            {% else %}
+                <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 dark:text-white opacity-0 fade-in">
+                    Titre par défaut
+                </h1>
+                <p class="mt-4 text-lg text-gray-600 dark:text-gray-300 opacity-0 fade-in fade-in-delay-1">
+                    Sous-titre par défaut.
+                </p>
+            {% endif %}
+            <div class="mt-8 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start opacity-0 fade-in fade-in-delay-2">
+                <a href="#portfolio" class="bg-indigo-600 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                    Voir mes projets
+                </a>
+                <a href="#contact" class="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-white px-8 py-3 rounded-full font-semibold hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-300">
+                    Me contacter
+                </a>
+            </div>
+        </div>
+
+        <!-- Visual Placeholder -->
+        <div class="lg:w-1/2 p-8 opacity-0 fade-in fade-in-delay-3">
+            <div class="relative w-full">
+                {% if hero_section.image %}
+                    <img src="{{ hero_section.image.url }}" alt="Image de la section Hero" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+                {% else %}
+                    <img src="https://placehold.co/600x400/111827/4f46e5?text=Azeez+Ridwan" alt="Placeholder" class="rounded-lg shadow-2xl w-full h-auto object-cover">
+                {% endif %}
+                <div class="absolute inset-0 bg-gradient-to-t from-gray-900/50 via-transparent to-transparent rounded-lg"></div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<!-- About Section -->
+<div class="bg-white dark:bg-gray-800 shadow-xl rounded-lg p-8 md:p-12" id="about">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6 text-center">Qui suis-je ?</h1>
+
+        <div class="prose prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-6 text-left">
+            <p>
+                Je suis Azeez Ridwan, créateur digital spécialisé dans la génération d’images hyperréalistes et de vidéos publicitaires avec l’IA.
+            </p>
+            <p>
+                Mon objectif est d’aider les marques, créateurs et entreprises à raconter leur histoire visuellement grâce à des rendus saisissants, uniques et percutants.
+            </p>
+            <p>
+                En parallèle, je suis aussi développeur full-stack avec une expertise en Django, HTMX et React, ce qui me permet de construire des plateformes et portfolios robustes pour valoriser et diffuser ces créations.
+            </p>
+            <p class="text-indigo-500 dark:text-indigo-400 font-semibold bg-indigo-50 dark:bg-gray-700 p-4 rounded-lg">
+                💡 Mon atout : allier la puissance des outils IA et la maîtrise technique du développement web pour proposer des solutions digitales complètes et innovantes.
+            </p>
+        </div>
+
+        <div class="mt-12">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white text-center mb-8">Compétences clés</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Skill 1 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-12 h-12 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L6 14m6-6l.586-.586a2 2 0 012.828 0L20 10m-6-6l-1.586 1.586a2 2 0 000 2.828l4.586 4.586A2 2 0 0120 16v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2a2 2 0 012-2h2"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Génération d’images IA</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Midjourney, Stable Diffusion</p>
+                </div>
+                <!-- Skill 2 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-12 h-12 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Vidéos publicitaires IA</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Pika Labs, Runway</p>
+                </div>
+                <!-- Skill 3 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-12 h-12 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l-4 4-4-4-4 4"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Développement web</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">Django, HTMX, React</p>
+                </div>
+                <!-- Skill 4 -->
+                <div class="bg-gray-50 dark:bg-gray-700 p-6 rounded-lg text-center hover:shadow-lg hover:-translate-y-1 transition-all">
+                    <div class="flex justify-center mb-4">
+                        <svg class="w-12 h-12 text-indigo-500 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4M4 7l8 5 8-5"></path></svg>
+                    </div>
+                    <h3 class="text-lg font-semibold text-gray-800 dark:text-white">Bases de données</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-1">MySQL, PostgreSQL</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Services Section -->
+<div class="py-12 bg-gray-50 dark:bg-gray-800/50" id="services">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+                🚀 Services que je propose
+            </h2>
+        </div>
+
+        <div class="mt-10 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+            <!-- Service 1 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">🎨 1. Création de visuels publicitaires hyperréalistes</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Donnez vie à vos idées avec des images uniques et percutantes. Je crée des visuels photoréalistes adaptés à vos campagnes marketing, réseaux sociaux ou supports print.</p>
+                <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>✅ Mockups produits (cosmétiques, tech, mode, immobilier…)</li>
+                    <li>✅ Affiches publicitaires</li>
+                    <li>✅ Branding visuel (portraits pro, avatars, bannières)</li>
+                </ul>
+            </div>
+            <!-- Service 2 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">🎥 2. Production de vidéos publicitaires avec IA</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Des vidéos courtes et impactantes pour booster votre communication. J’utilise l’IA pour concevoir des vidéos publicitaires immersives et modernes.</p>
+                <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>✅ Spots publicitaires (15-60 secondes)</li>
+                    <li>✅ Vidéos produit immersives</li>
+                    <li>✅ Contenus animés pour TikTok, Instagram, Facebook</li>
+                </ul>
+            </div>
+            <!-- Service 3 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">📱 3. Contenus digitaux pour réseaux sociaux</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Créez une identité visuelle cohérente et engageante. Je conçois des contenus optimisés pour capter l’attention sur toutes les plateformes.</p>
+                <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>✅ Carrousels visuels (Instagram, LinkedIn, Facebook)</li>
+                    <li>✅ Stories & Reels IA</li>
+                    <li>✅ Templates personnalisés pour une identité forte</li>
+                </ul>
+            </div>
+            <!-- Service 4 -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-400">🖼️ 4. Identité visuelle & communication digitale</h3>
+                <p class="mt-2 text-gray-600 dark:text-gray-300">Construisez une image de marque forte et mémorable. Je vous aide à définir et incarner votre univers visuel grâce à l’IA.</p>
+                <ul class="mt-4 space-y-2 text-gray-600 dark:text-gray-300">
+                    <li>✅ Design d’affiches (digital & print)</li>
+                    <li>✅ Bannières et headers professionnels</li>
+                    <li>✅ Cohérence graphique pour toute votre communication</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="mt-10 bg-indigo-50 dark:bg-gray-700 p-6 rounded-lg text-center">
+            <p class="text-indigo-800 dark:text-indigo-300 font-semibold">💡 Option hybride (IA + Dev web) : Intégration de galeries IA ou landing pages publicitaires dans vos sites pour valoriser vos créations et vos campagnes.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Latest Blog Posts Section -->
+<div class="py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center">
+            <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl">
+                Derniers Articles
+            </h2>
+        </div>
+        <div class="mt-10 grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            {% for article in latest_articles %}
+                <article class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
+                        <a href="{% url 'blog_detail' slug=article.slug %}">{{ article.title }}</a>
+                    </h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
+                        {{ article.created_at|date:"d F Y" }}
+                    </p>
+                    <p class="mt-4 text-gray-600 dark:text-gray-300 flex-grow">
+                        {{ article.content|truncatewords_html:20|safe }}
+                    </p>
+                    <div class="mt-4">
+                        <a href="{% url 'blog_detail' slug=article.slug %}" class="font-semibold text-indigo-600 dark:text-indigo-400 hover:underline">
+                            Lire la suite &rarr;
+                        </a>
+                    </div>
+                </article>
+            {% empty %}
+                <p class="col-span-full text-center text-gray-500 dark:text-gray-400">Aucun article à afficher pour le moment.</p>
+            {% endfor %}
+        </div>
+        <div class="mt-10 text-center">
+            <a href="{% url 'blog_list' %}" class="bg-indigo-600 text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300">
+                Voir tous les articles
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Portfolio Section -->
+<div class="py-12" id="portfolio">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-extrabold text-gray-900 dark:text-white sm:text-4xl text-center">
+            Mes Réalisations
+        </h2>
+        <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {% for project in projects %}
+              <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg shadow-md overflow-hidden transform hover:scale-105 transition-transform duration-300">
+                {% if project.image %}
+                  <img class="w-full h-56 object-cover" src="{{ project.image.url }}" alt="Image pour {{ project.title }}">
+                {% else %}
+                    <div class="w-full h-56 bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+                        <p class="text-gray-500 dark:text-gray-400">Aucune image</p>
+                    </div>
+                {% endif %}
+                <div class="p-6">
+                  <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full mb-2">{{ project.get_category_display }}</span>
+                  <h3 class="text-2xl font-bold text-gray-800 dark:text-white">{{ project.title }}</h3>
+                  <p class="mt-2 text-gray-600 dark:text-gray-300">{{ project.description|truncatewords:25 }}</p>
+                  <div class="mt-4">
+                    {% if project.link %}
+                      <a href="{{ project.link }}" target="_blank" rel="noopener noreferrer" class="text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 font-semibold">Voir le projet &rarr;</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            {% empty %}
+              <p class="text-gray-500 dark:text-gray-400 col-span-full text-center">Aucun projet à afficher pour le moment.</p>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="py-12 bg-gray-50 dark:bg-gray-800/50" id="contact">
+    <div class="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white dark:bg-gray-800 shadow rounded-lg p-8">
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4 text-center">Contactez-moi</h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-8 text-center">
+                Une question, une proposition de projet ou juste envie de dire bonjour ? N'hésitez pas à utiliser le formulaire ci-dessous.
+            </p>
+            <div id="contact-form-wrapper">
+                {% include "portfolio/partials/contact_form.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.particlesJS) {
+    particlesJS("particles-js", {
+      "particles": {
+        "number": {
+          "value": 80,
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff"
+        },
+        "shape": {
+          "type": "circle"
+        },
+        "opacity": {
+          "value": 0.5,
+          "random": false
+        },
+        "size": {
+          "value": 3,
+          "random": true
+        },
+        "line_linked": {
+          "enable": true,
+          "distance": 150,
+          "color": "#ffffff",
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 2,
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out"
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "repulse"
+          }
+        },
+        "modes": {
+          "repulse": {
+            "distance": 100,
+            "duration": 0.4
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  }
+});
+</script>
+{% endblock %}

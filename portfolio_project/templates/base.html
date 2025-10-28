@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Azeez Ridwan - Portfolio{% endblock %}</title>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+        }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        .nav-link { position: relative; padding-bottom: 0.25rem; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background-color: #4f46e5; transition: width 0.3s ease-in-out; }
+        .dark .nav-link::after { background-color: #a5b4fc; }
+        .nav-link:hover::after { width: 100%; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .fade-in { animation: fadeIn 1s ease-out forwards; opacity: 0; }
+        .fade-in-delay-1 { animation-delay: 0.2s; }
+        .fade-in-delay-2 { animation-delay: 0.4s; }
+        .fade-in-delay-3 { animation-delay: 0.6s; }
+
+        /* Hamburger Menu Animation */
+        .hamburger-line { transition: transform 0.3s, opacity 0.3s; }
+        .hamburger-open .line-1 { transform: translateY(8px) rotate(45deg); }
+        .hamburger-open .line-2 { opacity: 0; }
+        .hamburger-open .line-3 { transform: translateY(-8px) rotate(-45deg); }
+    </style>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 font-sans transition-colors duration-500">
+    <header id="main-header" class="sticky top-0 z-50 transition-all duration-300">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div>
+                <a href="{% url 'home' %}" class="text-3xl font-extrabold">
+                    <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 to-purple-500 dark:from-indigo-400 dark:to-purple-400">
+                        Azeez Ridwan
+                    </span>
+                </a>
+            </div>
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{% url 'home' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Accueil</a>
+                <a href="#about" class="nav-link text-gray-700 dark:text-gray-300 font-medium">À Propos</a>
+                <a href="#services" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Services</a>
+                <a href="#portfolio" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Portfolio</a>
+                <a href="{% url 'blog_list' %}" class="nav-link text-gray-700 dark:text-gray-300 font-medium">Blog</a>
+                <a href="#contact" class="bg-indigo-600 text-white px-5 py-2 rounded-full font-semibold shadow-lg hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                    Contact
+                </a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-gray-800 dark:text-gray-200 focus:outline-none">
+                    <div class="space-y-2">
+                        <span class="hamburger-line line-1 block w-8 h-0.5 bg-current"></span>
+                        <span class="hamburger-line line-2 block w-8 h-0.5 bg-current"></span>
+                        <span class="hamburger-line line-3 block w-8 h-0.5 bg-current"></span>
+                    </div>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/90 dark:bg-gray-900/90">
+            <a href="{% url 'home' %}" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Accueil</a>
+            <a href="#about" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">À Propos</a>
+            <a href="#services" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Services</a>
+            <a href="#portfolio" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Portfolio</a>
+            <a href="{% url 'blog_list' %}" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Blog</a>
+            <a href="#contact" class="block py-2 px-4 text-sm text-gray-700 dark:text-gray-300">Contact</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto p-6 my-8">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800">
+        <div class="container mx-auto py-6 px-6 text-center text-gray-500 dark:text-gray-400">
+            <p>&copy; {% now "Y" %} Azeez Ridwan. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenuButton.classList.toggle('hamburger-open');
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('main-header');
+        const handleScroll = () => {
+            if (window.scrollY > 10) {
+                header.classList.add('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-sm', 'shadow-md');
+            } else {
+                header.classList.remove('bg-white/80', 'dark:bg-gray-900/80', 'backdrop-blur-sm', 'shadow-md');
+            }
+        };
+        window.addEventListener('scroll', handleScroll);
+        // Run on load as well
+        handleScroll();
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
